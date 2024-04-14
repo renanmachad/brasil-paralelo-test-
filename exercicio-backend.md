@@ -1,0 +1,86 @@
+
+
+# Contexto
+
+Para enriquecer a experiência dos membros no consumo de vídeos, a
+plataforma da Brasil Paralelo deve permitir que os usuários continuem
+assistindo aos vídeos a partir do mesmo ponto onde pararam de assistir
+da última vez.  Para isso, é necessário desenvolver um sistema que
+seja capaz de armazenar o estado de reprodução, ou seja, que armazene
+o momento exato no qual cada usuário interrompeu a execução dos vídeos
+da última vez.
+
+
+# Problema
+
+Você deve arquitetar e implementar uma solução para manter registros
+de progresso de reproduçao de mídias (posição), isso faz parte do
+serviço de `playback`.
+
+A API a ser implementa foi documentada utilizando OpenAPI e está
+disponível no arquivo [api.yml](api.yml).
+
+
+# Pré-requisitos
+
+Este exercício deve ser desenvolvido utilizando a linguagem de
+programação [Clojure](https://clojure.org).
+
+Os dados devem ser persistido em disco, utilize a tecnologia que
+preferir ou julgar mais adequada para isto.
+
+
+# Avaliação
+
+Seu projeto será avaliado de acordo com os seguintes itens:
+
+
+## Arquitetura
+
+Diagrame a arquitetura de sua solução, demonstrando quais
+componentes/tecnologias estão presentes e como se relacionam.
+
+Justifique a escolha da tecnologia de persistencia no `README` do
+projeto.
+
+Sugestão de ferramenta: [diagrams.net](https://app.diagrams.net/), [PlantUML](https://plantuml.com/component-diagram).
+
+
+## Código-fonte
+
+"Talk is cheap. Show me the code." - Linus Torvalds
+
+Em relação ao código-fonte, será avaliado:
+
+-   corretude da solução;
+-   complexidade;
+-   organização;
+-   legibilidade.
+
+É desejavel que você demonstre domínio sobre ferramentas de controle
+de versão como [git](https://git-scm.com/). Você pode nos enviar o repositório compactado
+(tarball) ou hospedar o código em alguma plataforma como [GitHub](https://github.com/) ou
+[GitLab](https://about.gitlab.com/) e enviar o link para acesso.
+
+
+## Testes Automatizados
+
+É desejavel que você implemente alguma forma de teste
+automatizado. Você tem liberdade para escolher sua abordagem
+favorita. Exemplo: teste de unidade, integração, propriedade ou ainda
+outra que você preferir.
+
+Caso você opte por implementar testes automatizados, inclua no
+`README` as instruções de utilização.
+
+
+## Reprodução
+
+O avaliador deve ser capaz de executar sua solução localmente.
+
+Esperamos que você inclua no `README` instruções de como rodar o
+serviço e qualquer outro componente necessário para validação do
+exercício.
+
+Recomendamos a utilização de *containers* `Docker` em conjunto com
+`Docker Compose`.
