@@ -26,4 +26,14 @@
       {:status 422 :headers {"Content-Type" "application/json"}}
       (persist-position position))))
 
-(defn get-positions [req] {:status 200})
+(defn get-positions [req]
+  (log/info "QUERY-POSITIONS PARAMS" :params req)
+  (let [page (get-in req [:params :page])
+        per_page (get-in req [:params :per_page])
+        user_id (get-in req [:params :user_id])
+        title_id (get-in req [:params :title_id])
+        media_id (get-in req [:params :media_id])
+        finished (get-in req [:params :finished])
+        ]
+    (query-position page per_page user_id title_id media_id finished)))
+
