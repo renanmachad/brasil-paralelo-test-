@@ -18,18 +18,20 @@
 
 (defn query-position [page per_page user_id title_id media_id finished]
   (log/info "Querying positions" page per_page user_id title_id media_id finished)
-  (let [finished (Boolean/parseBoolean finished)
-        result (query-positions db {:page (or (Integer/parseInt page) 0)
-                                    :per_page (or (Integer/parseInt per_page) 0)
-                                    :user_id user_id
+  (let [page (if (nil? page) 0 (Integer/parseInt page))
+        per_page (if (nil? per_page) 0 (Integer/parseInt per_page))
+        finished (Boolean/parseBoolean finished)
+        result (query-positions db {:page     page
+                                    :per_page per_page
+                                    :user_id  user_id
                                     :title_id title_id
                                     :media_id media_id
                                     :finished finished})
         result (map #(update % :user_id str) result)
         result (map #(update % :title_id str) result)
         result (map #(update % :media_id str) result)
-        total-pages (query-total-pages db {:per_page (or (Integer/parseInt per_page) 0)
-                                           :user_id user_id
+        total-pages (query-total-pages db {:per_page per_page
+                                           :user_id  user_id
                                            :title_id title_id
                                            :finished finished
                                            :media_id media_id})]
@@ -37,10 +39,10 @@
     (log/info "Total pages" total-pages)
     (log/debug "Total pages" (get total-pages :total_pages))
     {:status 200 :headers {
-                           "Content-Type" "application/json"
-                           "x-page" (str page)
-                           "x-per-page" (str per_page)
-                           "x-total" (str (count result))
+                           "Content-Type"  "application/json"
+                           "x-page"        (str page)
+                           "x-per-page"    (str per_page)
+                           "x-total"       (str (count result))
                            "x-total-pages" (str (get total-pages :total_pages))
                            }
-     :body (json/write-str result)}))
+     :body   (json/write-str result)}))
