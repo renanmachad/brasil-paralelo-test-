@@ -14,10 +14,8 @@
   )
 
 (defroutes app-routes
-           (GET "/" [] "Hello World")
            (POST "/positions" [req]  save-position)
            (GET "/positions" [req] get-positions )
-           (GET "/json" [] {:status 200 :headers {"Content-Type" "application/json"} :body (json/write-str {:message "Hello World"})})
            (route/not-found "Not Found"))
 
 
