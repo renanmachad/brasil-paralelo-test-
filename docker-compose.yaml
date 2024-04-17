@@ -16,8 +16,15 @@ services:
       - ./init.sql:/docker-entrypoint-initdb.d/init.sql
       - postgres_data:/var/lib/postgresql/data
 
-  app:
+  test:
+    build:
+        context: .
+        dockerfile: Dockerfile
+    depends_on:
+        - db
+    command: lein test
 
+  app:
     build:
       context: .
       dockerfile: Dockerfile
